@@ -22,9 +22,11 @@ end
 
 Better style
 ```{code-cell} julia
-time ep = zeros(n)
+@time begin
+ep = zeros(n)
 for i in eachindex(ep)
     ep[i] = randn()
+end
 end
 
 0.124869 seconds (4.00 M allocations: 76.278 MiB, 6.24% gc time)
@@ -43,11 +45,13 @@ ep_mean = ep_sum / n
 ```
 Loop over indexes. There is a litter slower. 
 ```{code-cell} julia
+@time begin
 ep_sum = 0.0
-@time for j in eachindex(ep)
+for j in eachindex(ep)
     ep_sum += ep[j]
 end
 ep_mean = ep_sum / n
+end
 
 0.145290 seconds (5.00 M allocations: 91.537 MiB, 9.92% gc time)
 ```
