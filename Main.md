@@ -55,3 +55,18 @@ end
 
 0.145290 seconds (5.00 M allocations: 91.537 MiB, 9.92% gc time)
 ```
+## Specific feature of Julia
+Julia allows to write code in a natural language manner. For example we want to define a linear function `y(x) = px + q` in Julia. We can write in a `function` cell
+```{code-cell} julia
+p = 0.1
+q = 0.2
+function f(x)
+    return p * x +q
+end
+```
+or in the following manner
+```{code-cell} julia
+p = 0.1
+q = 0.2
+f(x) = p * x + q
+``` 
