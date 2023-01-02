@@ -56,7 +56,7 @@ end
 0.145290 seconds (5.00 M allocations: 91.537 MiB, 9.92% gc time)
 ```
 ## Specific feature of Julia
-Julia allows to write code in a natural language manner. For example we want to define a linear function `y(x) = px + q` in Julia. We can write in a `function` cell
+**Natural code**. Julia allows to write code in a natural language manner. For example we want to define a linear function `y(x) = px + q` in Julia. We can write in a `function` cell
 ```julia
 p = 0.1
 q = 0.2
@@ -70,3 +70,25 @@ p = 0.1
 q = 0.2
 f(x) = p * x + q
 ``` 
+
+**Broadcast.** Mathematica has wonderful list operations and its functions can act on a list. Julia has the broadcast operator `.` that does the same thing.
+```julia
+xx = [0., pi/6., pi/2.]
+sin.(xx)
+# is equivalent to 
+# broadcast(sin, xx)
+# and map(sin, xx)
+
+3-element Vector{Float64}:
+ 0.0
+ 0.49999999999999994
+ 1.0
+```
+**Named parameters.** In MMT, there are two types of parameters in a function, the necessary paramters and the additional paramters which provides modification to the function and often have default values. In Julia, the two types of parameters are seperated by `;` in the argument. 
+```julia
+function binomial_rv(n, p; m=1000)
+    xlis = [binomial_r(n, p) for _ in 1:m]
+    histogram(xlis)
+end
+```
+
