@@ -91,4 +91,17 @@ function binomial_rv(n, p; m=1000)
     histogram(xlis)
 end
 ```
+**Shorhand notation for If**
+Julia allows to write the `if` environment in a more compact form which does not affect the speed. For example, 
+```julia
+u = rand()
+# Usual form
+if u < 0.5
+    count +=1 
+else 
+    count = 0
+end
 
+# Compact form
+count = u < 0.5 ? count + 1 : 0 
+```
