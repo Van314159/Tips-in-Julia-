@@ -105,3 +105,30 @@ end
 # Compact form
 count = u < 0.5 ? count + 1 : 0 
 ```
+**Looping without Indices**
+To loop through pairs from two sequences, use `zip()`
+```julia
+men = ("Caesar", "Brutus")
+women = ("Portia", "Calpurnia")
+for (man, woman) in zip(men, women)
+    println("$woman is the wife of $man")
+end
+
+Portia is the wife of Caesar
+Calpurnia is the wife of Brutus
+```
+
+**Operations in String**.
+A quick way to print the value of a variable in a string is to use `$`
+```julia
+x = 10
+"x = $x"
+
+"x = 10"
+```julia
+A quick way to concatenate (join) two strings is to `*`
+```julia
+"Cae"*"sar"
+
+"Caesar"
+```
