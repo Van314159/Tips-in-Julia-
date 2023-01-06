@@ -125,10 +125,18 @@ x = 10
 "x = $x"
 
 "x = 10"
-```julia
+```
 A quick way to concatenate (join) two strings is to `*`
 ```julia
 "Cae"*"sar"
 
 "Caesar"
 ```
+
+Tips from [Performance Tips](https://www.juliafordatascience.com/performance-tips/)
+- If you are initializing an empty array, but know the type in advance, let Julia know about it!
+```julia
+x = [] # Poor
+x = Float64[] # Better
+```
+- Don't change the type of a variable in a function. 
