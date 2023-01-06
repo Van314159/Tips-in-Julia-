@@ -117,6 +117,33 @@ end
 Portia is the wife of Caesar
 Calpurnia is the wife of Brutus
 ```
+If you need the index as well, use `enumerate`
+```julia
+for (i, man) in enumerate(men)
+    woman = women[i]
+    println("$woman is the wife of $man")
+end
+
+Portia is the wife of Caesar
+Calpurnia is the wife of Brutus
+```
+
+**Generators**
+For those functionsthat accepts iterators and arrays, use the former to avoid allocating and storing any temporary values. 
+```julia
+xs = 1:10000
+f(x) = x^2
+@btime sum([f(x) for x in $xs])
+@btime sum(f.(xs))
+@btime sum(f(x) for x in xs) %Drop the [] brackets.
+
+8.037 μs (2 allocations: 78.17 KiB)
+9.378 μs (6 allocations: 78.28 KiB)
+138.846 ns (2 allocations: 48 bytes)
+```
+Notice that the first two cases are nearly identical, but the third has a speedup of over 80x and use far more less memory.
+
+
 
 **Operations in String**.
 A quick way to print the value of a variable in a string is to use `$`
@@ -126,6 +153,7 @@ x = 10
 
 "x = 10"
 ```
+
 A quick way to concatenate (join) two strings is to `*`
 ```julia
 "Cae"*"sar"
@@ -133,10 +161,3 @@ A quick way to concatenate (join) two strings is to `*`
 "Caesar"
 ```
 
-Tips from [Performance Tips](https://www.juliafordatascience.com/performance-tips/)
-- If you are initializing an empty array, but know the type in advance, let Julia know about it!
-```julia
-x = [] # Poor
-x = Float64[] # Better
-```
-- Don't change the type of a variable in a function. 
