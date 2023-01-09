@@ -142,7 +142,19 @@ f(x) = x^2
 ```
 Notice that the first two cases are nearly identical, but the third has a speedup of over 80x and use far more less memory.
 
-
+## List Operation
+### Take part of a sequence.
+Julia provides `first` and `last` to take the first element and last element of a set. But it is usually not enough. Take a simulation of jump processs under continous measurement for example. We would store the results by a  four-value tuple `(work, meas, reality, t)`. Here `work` means work on the system at time `t`, `meas` for the measurement outcome which can be wrong, and `reality` is for the true state of the system. As we generate a sequence of the four-value tuple, we would like operate on the lists by different conditions. 
+The squence of work and time is easy. Just use the `broadcast` operation.
+```julia
+worklis = first.(wholelis)
+timelis = last.(wholelis)
+```
+The sequence of middle elements can be taken by generator. (Other more elegant way?)
+```julia
+measlis = [x[2] for x in wholelis]
+realitylis = [x[3] for x in wholelis]
+```
 
 **Operations in String**.
 A quick way to print the value of a variable in a string is to use `$`
@@ -160,3 +172,18 @@ A quick way to concatenate (join) two strings is to `*`
 "Caesar"
 ```
 ## Tools for Performance
+`@time`: return the time cost. If you want to evalute a body of code, add `begin` and `end`
+```julia
+@time begin
+func...
+end
+```
+
+`@btime`: return the average cost after many round evaluation. 
+
+`@benchmark` from the package `BenchmarkTools`. Detail version of `btime`. 
+
+`@code_warntype` checks the unstable variable type in your code. The unstable variable is colored in red. So you better add annotation such as `xx::Float` 
+to your variable. 
+
+`@profview` from the package `ProfileView`. It will generate a graph containing many colored blocks, each corresponding to a line of your code. The bad code is colored in red. 
