@@ -1,5 +1,4 @@
 
-# 20221231
 Code from [QuantEco](https://julia.quantecon.org/getting_started_julia/julia_by_example.html#id10)
 
 ## Loop
@@ -160,4 +159,4 @@ A quick way to concatenate (join) two strings is to `*`
 
 "Caesar"
 ```
-
+## Tools for Performance
