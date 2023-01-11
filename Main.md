@@ -156,6 +156,13 @@ measlis = [x[2] for x in wholelis]
 realitylis = [x[3] for x in wholelis]
 ```
 
+**Pattern match.**
+Say, we want to take all elements that satisfy a rule, Julia provides an elegent way by broadcast 
+```julia
+x = rand(100)
+x[x .> 0.5] # Take all elements that are >0.5.
+```
+
 **Operations in String**.
 A quick way to print the value of a variable in a string is to use `$`
 ```julia
