@@ -183,7 +183,7 @@ end
 
 `@benchmark` from the package `BenchmarkTools`. Detail version of `btime`. 
 
-`@code_warntype` checks the unstable variable type in your code. The unstable variable is colored in red. So you better add annotation such as `xx::Float` 
+`@code_warntype` checks the unstable variable type in your code. The unstable variable is colored in **red**. So you better add annotation such as `xx::Float` 
 to your variable. 
 
-`@profview` from the package `ProfileView`. It will generate a graph containing many colored blocks, each corresponding to a line of your code. The bad code is colored in red. 
+`@profview` from the package `ProfileView`. It will generate a graph containing many colored blocks, each corresponding to a line of your code. The bad code is colored in **red**. 
