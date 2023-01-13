@@ -162,6 +162,11 @@ Say, we want to take all elements that satisfy a rule, Julia provides an elegent
 x = rand(100)
 x[x .> 0.5] # Take all elements that are >0.5.
 ```
+For complex functions, use `findall` function. `findall` return a list of indexes of the desired elements. 
+```julia
+xlis = rand((100, 100))
+xlis(findall(x->x[2] > 0.5, xlis))
+```
 
 **Operations in String**.
 A quick way to print the value of a variable in a string is to use `$`
