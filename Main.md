@@ -143,7 +143,7 @@ f(x) = x^2
 Notice that the first two cases are nearly identical, but the third has a speedup of over 80x and use far more less memory.
 
 ## List Operation
-### Take part of a sequence.
+**Take part of a sequence.**
 Julia provides `first` and `last` to take the first element and last element of a set. But it is usually not enough. Take a simulation of jump processs under continous measurement for example. We would store the results by a  four-value tuple `(work, meas, reality, t)`. Here `work` means work on the system at time `t`, `meas` for the measurement outcome which can be wrong, and `reality` is for the true state of the system. As we generate a sequence of the four-value tuple, we would like operate on the lists by different conditions. 
 The squence of work and time is easy. Just use the `broadcast` operation.
 ```julia
@@ -166,6 +166,14 @@ For complex functions, use `findall` function. `findall` return a list of indexe
 ```julia
 xlis = rand((100, 100))
 xlis(findall(x->x[2] > 0.5, xlis))
+```
+
+**Join vectors**. Use `vcat` function. 
+```julia
+xlis = rand(10)
+ylis = rand(12)
+zlis = rand(13)
+vcat(xlis, ylis, zlis)
 ```
 
 **Operations in String**.
@@ -212,7 +220,7 @@ writedlm("xlis.csv", x)
 y = readdlm("xlis.csv)
 ```
 
-**I/O files to other directory.** First obtain your working directory and then use `joinpath` function. Say your are working on a script `main.jl` under a directory "Project", and you want to save data in a subdirectory "Project/Data". Following code does the job. 
+**I/O files to other directory.** See [JuliaDataScience](https://juliadatascience.io/filesystem). First obtain your working directory and then use `joinpath` function. Say your are working on a script `main.jl` under a directory "Project", and you want to save data in a subdirectory "Project/Data". Following code does the job. 
 ```julia
 xlis = rand(10)
 root = dirname(@__FILE__)
