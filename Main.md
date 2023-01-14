@@ -183,7 +183,7 @@ A quick way to concatenate (join) two strings is to `*`
 
 "Caesar"
 ```
-## Tools for Performance
+## Tools for Performance Analysis
 `@time`: return the time cost. If you want to evalute a body of code, add `begin` and `end`
 ```julia
 @time begin
@@ -199,3 +199,29 @@ end
 to your variable. 
 
 `@profview` from the package `ProfileView`. It will generate a graph containing many colored blocks, each corresponding to a line of your code. The bad code is colored in **red**. 
+
+## Import/Export Data
+You can use `save_object()` and `load_object()` from package `JDL`, or use `writedlm()` and `readdlm()` from package `DelimitedFiles`. 
+For the data saved for Julia, I use `JDL`; for the date saved for MMT, I use `DelimitedFiles`. 
+```julia
+x = [1, "a"]
+save_object("xlis.jdl2", x)
+y = load_object("xlis.jdl2")
+
+writedlm("xlis.csv", x)
+y = readdlm("xlis.csv)
+```
+
+**I/O files to other directory.** First obtain your working directory and then use `joinpath` function. Say your are working on a script `main.jl` under a directory "Project", and you want to save data in a subdirectory "Project/Data". Following code does the job. 
+```julia
+xlis = rand(10)
+root = dirname(@__FILE__)
+> "/Users/mac/Nutstore Files/Research/Auxillary Tools/Julia/2023 Information
+
+datapath = joinpath(root, "Data/")
+save_object(joinpath(datapath, "xlis.jld2"),xlis)
+```
+
+# Issuses Not related to Code
+**JupterNoteBook Error:** `_xsrf argument missing from POST` and you can't save the notebook. 
+*Soluton:* Refresh your homepage page "http://localhost:8888/tree/[yourAddress]". 
