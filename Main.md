@@ -1,6 +1,20 @@
 
 Code from [QuantEco](https://julia.quantecon.org/getting_started_julia/julia_by_example.html#id10)
 
+## Type
+**Use float number as soon as you can.** Just as in MMT, calculations on the `Float` type and `Int` type have siginificant difference. It is because the `Int` type recalls a second-level code to define it.
+
+**Convert float to Int**. There are cases that we need `Int` number such as the index in a loop. For example, we want to simulate a continous time-dependent markov chain. We need to discret the time and use `Int((tf-ti)/deltaT)` to determine the total number of steps. But `tf` and `ti` are `float` numbers, and it might raise the errror `Inexact typeError Int()`. The solution is to use `round(Int, xxx)`. 
+```julia
+ti = 2.3
+delta = 0.01
+Int(ti/delta) 
+> InexactError: Int64(229.99999999999997)
+
+round(Int, ti/delta)
+> 230
+```
+
 ## Loop
 Built-in funciton
 ```julia
